@@ -1,0 +1,1 @@
+{"rustc":10493413842677104517,"features":"[\"alloc\", \"std\"]","target":15610650933893431490,"profile":14094339167972473758,"path":10996949657714223090,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release\\.fingerprint\\futures-task-0ab7e6138c743388\\dep-lib-futures-task"}}],"rustflags":[],"metadata":14276283763424674291,"config":2202906307356721367,"compile_kind":0}

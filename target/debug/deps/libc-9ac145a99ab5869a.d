@@ -1,0 +1,11 @@
+C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\liblibc-9ac145a99ab5869a.rmeta: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\macros.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\fixed_width_ints.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\mod.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\msvc\mod.rs
+
+C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\liblibc-9ac145a99ab5869a.rlib: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\macros.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\fixed_width_ints.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\mod.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\msvc\mod.rs
+
+C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\libc-9ac145a99ab5869a.d: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\macros.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\fixed_width_ints.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\mod.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\msvc\mod.rs
+
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\lib.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\macros.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\fixed_width_ints.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\mod.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.152\src\windows\msvc\mod.rs:

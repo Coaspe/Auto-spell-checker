@@ -1,0 +1,10 @@
+C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\libclipboard_win-94805a7ae08eed2d.rmeta: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\sys.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\types.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\formats.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\raw.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\utils.rs
+
+C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\clipboard_win-94805a7ae08eed2d.d: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\sys.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\types.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\formats.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\raw.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\utils.rs
+
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\lib.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\sys.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\types.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\formats.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\raw.rs:
+C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-win-5.0.0\src\utils.rs:
