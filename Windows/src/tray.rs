@@ -2,7 +2,17 @@ use std::process::Command;
 use std::sync::mpsc::sync_channel;
 use tray_item::{IconSource, TrayItem};
 
-const GUIDANCE: &str = "echo 사용법 && echo 1. 원하는 텍스트를 클립 보드에 복사 (Ctrl + C) && echo 2. Left Ctrl + Left Alt를 순서대로 누르면 자동 맞춤법 검사가 진행됩니다. && echo 3. 자동 맞춤법 검사가 완료되면 클립 보드에 자동으로 복사됩니다. && echo 4. 원하는 곳에 붙여넣기 하세요. && echo ----------------------- && echo 해당 앱은 백그라운드로 실행되며 종료하려면 트레이 아이콘을 우클릭하세요. && echo 문의 사항은 이우람에게 해주세요. && pause";
+const GUIDANCE: &str = "echo 사용법 \
+&& echo --------------------------------------------------------------------- \
+&& echo 1. 원하는 텍스트를 클립 보드에 복사 (Ctrl + C) \
+&& echo 2. Left Ctrl + Left Alt를 순서대로 누르면 자동 맞춤법 검사가 진행됩니다. \
+&& echo 3. 자동 맞춤법 검사가 완료되면 클립보드에 자동으로 복사됩니다. \
+&& echo 4. 원하는 곳에 붙여넣기 하세요. \
+&& echo --------------------------------------------------------------------- \
+&& echo 해당 앱은 백그라운드로 실행됩니다.
+&& echo 앱을 종료하거나 사용법을 다시 보고 싶다면 숨겨진 아이콘에서 우클릭하세요. \
+&& echo 문의 사항은 이우람에게 해주세요. \
+&& pause";
 const REPORT_URL: &str = "https://auto-spell-checker.web.app/";
 const USAGE: &str = "사용법";
 const REPORT: &str = "홈페이지";
