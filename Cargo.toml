@@ -16,6 +16,7 @@ inputbot = "0.6"
 notify-rust = "4"
 tray-item = "0.9.0"
 open = "5"
+regex = "1.10.3"
 
 [build-dependencies]
 embed-resource = "2.3"

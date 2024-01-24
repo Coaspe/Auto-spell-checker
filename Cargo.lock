@@ -213,6 +213,7 @@ dependencies = [
  "inputbot",
  "notify-rust",
  "open",
+ "regex",
  "reqwest",
  "serde_json",
  "tokio",
