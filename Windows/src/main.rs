@@ -14,17 +14,17 @@ const SUMMARY_F_START: &str = "프로그램 시작을 실패했습니다.";
 const SUMMARY_S: &str = "결과가 클립보드에 복사되었습니다.";
 const SUMMARY_F: &str = "맞춤법 검사에 실패했습니다.";
 const SUMMARY_F_MAX: &str = "300자 이상의 텍스트는 검사할 수 없습니다.";
-const COLORBLINDNESS: &str = "color_blindness";
-const COLORBLINDNESSVAL: &str = "0";
+const COLOR_BLINDNESS: &str = "color_blindness";
+const COLOR_BLINDNESS_VAL: &str = "0";
 const Q: &str = "q";
 const URL: &str = "https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy";
-const USERAGENT: &str = "user-agent";
+const USER_AGENT: &str = "user-agent";
 const PASSPORT_KEY: &str = "passportKey";
-const USERAGENTVAL: &str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+const USER_AGENT_VAL: &str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
 AppleWebKit/537.36 (KHTML, like Gecko) \
 Chrome/57.0.2987.133 Safari/537.36";
 const REFERER: &str = "referer";
-const REFERERVAL: &str = "https://search.naver.com/";
+const REFERER_VAL: &str = "https://search.naver.com/";
 const MESSAGE: &str = "message";
 const RESULT: &str = "result";
 const NOTAG_HTML: &str = "notag_html";
@@ -110,7 +110,7 @@ fn notify(msg: &str, summary: &str) {
 async fn get_passport_key(client: &reqwest::Client) -> Result<String, Error> {
     let request = client
         .get(BASE_URL)
-        .header(USERAGENT, USERAGENTVAL)
+        .header(USER_AGENT, USER_AGENT_VAL)
         .send()
         .await;
 
@@ -140,13 +140,13 @@ async fn get_formatted_string(
 ) -> Result<String, Box<dyn std::error::Error>> {
     let params = [
         (PASSPORT_KEY, passport_key),
-        (COLORBLINDNESS, COLORBLINDNESSVAL),
+        (COLOR_BLINDNESS, COLOR_BLINDNESS_VAL),
         (Q, text),
     ];
     let response = client
         .post(URL)
-        .header(USERAGENT, USERAGENTVAL)
-        .header(REFERER, REFERERVAL)
+        .header(USER_AGENT, USER_AGENT_VAL)
+        .header(REFERER, REFERER_VAL)
         .form(&params)
         .send()
         .await?;
