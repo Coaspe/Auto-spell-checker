@@ -1,9 +1,0 @@
-C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\libglobal_hotkey-b3c60495ffade7f1.rmeta: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\error.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\hotkey.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\mod.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\windows\mod.rs
-
-C:\Users\URam Lee\Documents\GitHub\Algorithm\hello\target\debug\deps\global_hotkey-b3c60495ffade7f1.d: C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\lib.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\error.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\hotkey.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\mod.rs C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\windows\mod.rs
-
-C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\lib.rs:
-C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\error.rs:
-C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\hotkey.rs:
-C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\mod.rs:
-C:\Users\URam\ Lee\.cargo\registry\src\index.crates.io-6f17d22bba15001f\global-hotkey-0.4.2\src\platform_impl\windows\mod.rs:

@@ -1,1 +1,0 @@
-C:\Users\URam\ Lee\Documents\GitHub\Auto\ spell\ checker\target\debug\auto_spell_checker.exe: C:\Users\URam\ Lee\Documents\GitHub\Auto\ spell\ checker\build.rs C:\Users\URam\ Lee\Documents\GitHub\Auto\ spell\ checker\src\main.rs C:\Users\URam\ Lee\Documents\GitHub\Auto\ spell\ checker\src\tray.rs
