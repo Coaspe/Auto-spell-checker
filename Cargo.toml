@@ -1,0 +1,22 @@
+[package]
+name = "auto_spell_checker"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+winapi = { version = "0.3.9", features = ["handleapi", "processthreadsapi", "winnt", "winuser"] }
+serde_json = "1.0.1"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+tokio = { version = "1.0", features = ["full"] }
+clipboard-win = "5.0.0"
+futures = "0.3"
+inputbot = "0.6"
+notify-rust = "4"
+tray-item = "0.9.0"
+open = "5"
+regex = "1.10.3"
+
+[build-dependencies]
+embed-resource = "2.3"
