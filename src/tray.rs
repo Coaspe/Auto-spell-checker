@@ -9,6 +9,7 @@ const REPORT: &str = "홈페이지";
 const QUIT: &str = "종료";
 const TRAYTITLE: &str = "Auto Spell Checker";
 const COMMAND_PROGRAM: &str = "cmd";
+const APP_ICON: &str = "app-icon";
 
 enum Message {
     Quit,
@@ -23,8 +24,7 @@ fn create_info() {
 }
 
 pub fn init_tray() {
-    let mut tray =
-        TrayItem::new(TRAYTITLE, IconSource::Resource("name-of-icon-in-rc-file")).unwrap();
+    let mut tray = TrayItem::new(TRAYTITLE, IconSource::Resource(APP_ICON)).unwrap();
 
     tray.add_label(TRAYTITLE).unwrap();
 
