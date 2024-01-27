@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		321EC9B42B61374500110527 /* AutoSpellCheckerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321EC9B32B61374500110527 /* AutoSpellCheckerApp.swift */; };
-		321EC9B62B61374500110527 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321EC9B52B61374500110527 /* ContentView.swift */; };
 		321EC9B82B61374600110527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321EC9B72B61374600110527 /* Assets.xcassets */; };
 		321EC9BB2B61374600110527 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321EC9BA2B61374600110527 /* Preview Assets.xcassets */; };
 		321EC9C62B61374600110527 /* AutoSpellCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321EC9C52B61374600110527 /* AutoSpellCheckerTests.swift */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		321EC9B02B61374500110527 /* AutoSpellChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpellChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		321EC9B32B61374500110527 /* AutoSpellCheckerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpellCheckerApp.swift; sourceTree = "<group>"; };
-		321EC9B52B61374500110527 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		321EC9B72B61374600110527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		321EC9BA2B61374600110527 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		321EC9BC2B61374600110527 /* AutoSpellChecker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpellChecker.entitlements; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				321EC9B32B61374500110527 /* AutoSpellCheckerApp.swift */,
-				321EC9B52B61374500110527 /* ContentView.swift */,
 				321EC9B72B61374600110527 /* Assets.xcassets */,
 				321EC9BC2B61374600110527 /* AutoSpellChecker.entitlements */,
 				321EC9B92B61374600110527 /* Preview Content */,
@@ -271,7 +268,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				321EC9B62B61374500110527 /* ContentView.swift in Sources */,
 				321EC9E52B6137BD00110527 /* GreetingView.swift in Sources */,
 				321EC9DF2B61378100110527 /* MenuView.swift in Sources */,
 				321EC9E32B6137B100110527 /* NotificationCenter.swift in Sources */,
