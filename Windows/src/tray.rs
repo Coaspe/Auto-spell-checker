@@ -20,57 +20,75 @@ const TRAY_TITLE: &str = "Auto Spell Checker";
 const COMMAND_PROGRAM: &str = "cmd";
 const APP_ICON: &str = "app-icon";
 
+/// Represents the different types of messages that can be sent to the tray.
 enum Message {
+    /// Indicates a request to quit the application.
     Quit,
+    /// Indicates a request to show the window.
     ShowWindow,
+    /// Indicates a request to report something.
     Report,
 }
 
+/// Creates guidance by executing a command with the specified program and arguments.
 fn create_guidance() {
     let mut cmd = Command::new(COMMAND_PROGRAM);
     cmd.args(&["/C", GUIDANCE]);
     let _ = cmd.spawn().unwrap();
 }
 
+/// Initializes the system tray with menu items and message handling.
 pub fn init_tray() {
+    // Create a new tray item with the specified title and icon source
     let mut tray = TrayItem::new(TRAY_TITLE, IconSource::Resource(APP_ICON)).unwrap();
 
+    // Add a label to the tray item
     tray.add_label(TRAY_TITLE).unwrap();
 
+    // Create a synchronous channel for communication between threads
     let (tx, rx) = sync_channel(1);
 
+    // Create guidance for the application
     create_guidance();
 
+    // Clone the sender for showing the window and add a menu item with a closure
     let show_window_tx = tx.clone();
     tray.add_menu_item(USAGE, move || {
         show_window_tx.send(Message::ShowWindow).unwrap();
     })
     .unwrap();
 
+    // Clone the sender for reporting and add a menu item with a closure
     let report_tx = tx.clone();
     tray.add_menu_item(REPORT, move || {
         report_tx.send(Message::Report).unwrap();
     })
     .unwrap();
 
+    // Add a separator to the tray menu
     tray.inner_mut().add_separator().unwrap();
 
+    // Clone the sender for quitting and add a menu item with a closure
     let quit_tx = tx.clone();
     tray.add_menu_item(QUIT, move || {
         quit_tx.send(Message::Quit).unwrap();
     })
     .unwrap();
 
+    // Enter the message handling loop
     loop {
         match rx.recv() {
+            // If the Quit message is received, exit the application
             Ok(Message::Quit) => {
                 std::process::exit(0);
             }
 
+            // If the ShowWindow message is received, create guidance
             Ok(Message::ShowWindow) => {
                 create_guidance();
             }
 
+            // If the Report message is received, open the report URL
             Ok(Message::Report) => {
                 let _ = open::that(REPORT_URL);
             }
