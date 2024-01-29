@@ -7,9 +7,9 @@ struct AutoSpellCheckerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
-        Window("Activity", id: "Activity") {
-            GreetingView()
-        }
+        Window("Usage", id: "Usage") {
+            GreetingView().frame(width: 500, height: 400)
+        }.windowResizability(.contentSize)
 
         MenuBarExtra("Auto Spell Checker", systemImage: "list.bullet.clipboard") {
             MenuView()
