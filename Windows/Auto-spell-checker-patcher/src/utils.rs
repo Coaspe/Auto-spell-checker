@@ -1,43 +1,47 @@
-use std::fs::File;
 use std::io::prelude::*;
-use rusoto_core::{Region, RusotoError};
-use rusoto_s3::{GetObjectRequest, S3Client, S3};
+use std::{env::var, fs::{create_dir, File, remove_file}};
+use aws_sdk_s3::config::ProvideCredentials;
 use dotenv::dotenv;
-use std::env;
+use aws_config::meta::region::RegionProviderChain;
+use aws_sdk_s3::Client;
 
-const EXE_FILE_URL: &str = "https://your-s3-bucket.s3.amazonaws.com/your-exe-file.exe";
+pub async fn download_exe_file(path: &str) -> Result<&str, Box<dyn std::error::Error>> {
+    dotenv().ok();
 
-pub async  fn download_exe_file(url: &str) -> Result<(), Box<dyn std::error::Error>> {
-    // Configure AWS S3 client
-    let client = S3Client::new(Region::default());
+    let region_provider = RegionProviderChain::default_provider().or_else("ap-northeast-2");
+    let config = aws_config::from_env().region(region_provider).load().await;
+    config
+        .credentials_provider()
+        .expect("No AWS credentials provider was configured")
+        .provide_credentials()
+        .await
+        .expect("No AWS credentials were provided");
+    
+    let client = Client::new(&config);
+    let bucket = var("BUCKET")?;
+    let object_key = var("KEY")?;
 
-    // Specify bucket and object key
-    let bucket_name = "your_bucket_name";
-    let object_key = "your_object_key";
+    // let path = "C:\\Users".to_owned() + "\\" + &whoami::username() + "\\Auto spell checker";
+    let mut path_without_file_name: Vec<&str> = path.split("\\").collect();
+    let _ = path_without_file_name.pop();
 
-    // Prepare request to get the object
-    let request = GetObjectRequest {
-        bucket: bucket_name.to_owned(),
-        key: object_key.to_owned(),
-        ..Default::default()
-    };
+    let _ = create_dir(&path_without_file_name.join("\\"));
+    let __ = remove_file(&path);
 
-    // Get the object from S3
-    let result = client.get_object(request).await?;
+    let mut file = File::create(&path)?;
+    let mut object = client
+        .get_object()
+        .bucket(bucket)
+        .key(object_key)
+        .send()
+        .await?;
 
-    // Extract the body from the response
-    let body = result.body.unwrap();
-    let mut body_bytes = Vec::new();
+    // let mut byte_count = 0_usize;
+    while let Some(bytes) = object.body.try_next().await? {
+        // let bytes_len = bytes.len();
+        file.write_all(&bytes)?;
+        // byte_count += bytes_len;
+    }
 
-    // Read the body into a byte vector
-    body.into_async_read().read_to_end(&mut body_bytes).await?;
-
-    // Specify the path to save the downloaded file
-    let file_path = "path_to_save_exe_file/your_exe_file_name.exe";
-
-    // Write the byte vector to a file
-    let mut file = File::create(file_path)?;
-    file.write_all(&body_bytes)?;
-
-    Ok(())
+    Ok(&path)
 }
