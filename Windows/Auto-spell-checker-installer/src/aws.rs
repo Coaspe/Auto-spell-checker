@@ -33,8 +33,8 @@ pub async fn get_executor_and_patcher(
     let _ = get_exe(
         &patcher_path,
         &client,
-        var("executor_BUCKET")?,
-        var("executor_KEY")?,
+        var("EXECUTOR_BUCKET")?,
+        var("EXECUTOR_KEY")?,
     )
     .await?;
 

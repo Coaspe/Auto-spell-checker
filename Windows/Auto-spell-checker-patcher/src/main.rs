@@ -1,4 +1,5 @@
 use aws::get_lastest;
+use aws_config::imds::client;
 use dotenv::dotenv;
 use std::env;
 use std::process::Command;
@@ -16,7 +17,6 @@ async fn main() {
     };
 
     let path: &str = &(args[1]);
-
     let mut object_key = String::new();
     let mut bucket = String::new();
     let client = aws::init_aws(&mut bucket, &mut object_key).await;

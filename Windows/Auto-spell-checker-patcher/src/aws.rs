@@ -6,16 +6,17 @@ use std::{
     env::var,
     fs::{remove_file, File},
 };
+const REGION: &str = "ap-northeast-2";
 
 pub async fn init_aws(bucket: &mut String, object_key: &mut String) -> Client {
-    let region_provider = RegionProviderChain::default_provider().or_else("ap-northeast-2");
+    let region_provider = RegionProviderChain::default_provider().or_else(REGION);
     let config = aws_config::from_env().region(region_provider).load().await;
-    config
-        .credentials_provider()
-        .expect("No AWS credentials provider was configured")
-        .provide_credentials()
-        .await
-        .expect("No AWS credentials were provided");
+    // config
+    //     .credentials_provider()
+    //     .expect("No AWS credentials provider was configured")
+    //     .provide_credentials()
+    //     .await
+    //     .expect("No AWS credentials were provided");
 
     let client = Client::new(&config);
 
