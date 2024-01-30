@@ -6,6 +6,9 @@ use std::{env::current_dir, process::Command};
 mod aws;
 mod file_system;
 
+const USERNAME: &str = "USERNAME";
+const USERS_PATH:&str = "C:\\Users";
+
 #[tokio::main]
 async fn main() {
     dotenv().ok();
@@ -14,10 +17,10 @@ async fn main() {
     let mut executor_install_path =
         String::from(current_dir().unwrap().to_str().unwrap().to_string());
 
-    let env_user_name = env::var("USERNAME").unwrap();
+    let env_user_name = env::var(USERNAME).unwrap();
     let display_user_name = env_user_name.split(".").collect::<Vec<&str>>().join(" ");
 
-    let patcher_install_path = "C:\\Users".to_string() + &display_user_name;
+    let patcher_install_path = USERS_PATH.to_string() + &display_user_name;
 
     match desktop_path {
         Some(path) => {
@@ -40,7 +43,4 @@ async fn main() {
             println!("Error: {}", err);
         }
     }
-
-    // let user_name = file_system::get_username().unwrap();
-    // 원본 값은 drop되는데 reference를 유지할 수 없다 (borrow 할 수 없다.)
 }

@@ -1,11 +1,11 @@
 use aws::get_lastest;
-use aws_config::imds::client;
 use dotenv::dotenv;
 use std::env;
 use std::process::Command;
 
 mod aws;
 
+const EXECUTOR_URL: &str = "EXECUTOR_URL";
 #[tokio::main]
 async fn main() {
     dotenv().ok();
@@ -17,10 +17,8 @@ async fn main() {
     };
 
     let path: &str = &(args[1]);
-    let mut object_key = String::new();
-    let mut bucket = String::new();
-    let client = aws::init_aws(&mut bucket, &mut object_key).await;
-    let result = get_lastest(path, &client, &bucket, &object_key).await;
+    let url = env::var(EXECUTOR_URL).unwrap();
+    let result = get_lastest(path, &url).await;
 
     match result {
         Ok(_) => {
