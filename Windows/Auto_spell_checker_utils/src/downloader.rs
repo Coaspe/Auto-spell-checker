@@ -9,8 +9,11 @@ const PATCHER_URL: &str = "download_patcher";
 pub struct Downloader {}
 
 impl Downloader {
-    pub fn new() {}
-    pub async fn get_executor_and_patcher(
+    pub fn new() -> Downloader {
+        Self {}
+    }
+
+    pub async fn download_executor_and_patcher(
         &self,
         executor_install_path: &str,
         patcher_install_path: &str,
@@ -23,6 +26,24 @@ impl Downloader {
             .await?;
 
         Ok(executor_path)
+    }
+
+    pub async fn download_executor(
+        &self,
+        install_path: &str,
+    ) -> Result<String, Box<dyn std::error::Error>> {
+        Ok(self
+            .download_exe_by_url(install_path, EXECUTOR_URL, EXECUTOR_EXE)
+            .await?)
+    }
+
+    pub async fn download_patcher(
+        &self,
+        install_path: &str,
+    ) -> Result<String, Box<dyn std::error::Error>> {
+        Ok(self
+            .download_exe_by_url(install_path, PATCHER_URL, PATCHER_EXE)
+            .await?)
     }
 
     async fn download_exe_by_url(
