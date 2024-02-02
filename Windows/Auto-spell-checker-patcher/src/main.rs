@@ -1,28 +1,22 @@
-use aws::get_lastest;
-use dotenv::dotenv;
-use std::env;
+use ascu::Downloader;
+use std::env::args;
 use std::process::Command;
 
-mod aws;
-
-const EXECUTOR_URL: &str = "EXECUTOR_URL";
 #[tokio::main]
 async fn main() {
-    dotenv().ok();
-
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = args().collect();
 
     if args.len() < 2 {
         return;
     };
 
+    let downloader = Downloader::new();
     let path: &str = &(args[1]);
-    let url = env::var(EXECUTOR_URL).unwrap();
-    let result = get_lastest(path, &url).await;
+    let result = downloader.download_executor(path).await;
 
     match result {
-        Ok(_) => {
-            let _ = Command::new(path)
+        Ok(exe_path) => {
+            let _ = Command::new(exe_path)
                 .spawn()
                 .expect("Failed to execute command");
         }
