@@ -1,18 +1,15 @@
-use aws::get_executor_and_patcher;
-use dotenv::dotenv;
+use ascu::Downloader;
 use file_system::get_desktop_path;
 use std::env;
 use std::{env::current_dir, process::Command};
-mod aws;
 mod file_system;
 
 const USERNAME: &str = "USERNAME";
-const USERS_PATH:&str = "C:\\Users";
+const USERS_PATH: &str = "C:\\Users";
 
 #[tokio::main]
 async fn main() {
-    dotenv().ok();
-
+    let downloader: Downloader = Downloader::new();
     let desktop_path = get_desktop_path();
     let mut executor_install_path =
         String::from(current_dir().unwrap().to_str().unwrap().to_string());
@@ -20,7 +17,8 @@ async fn main() {
     let env_user_name = env::var(USERNAME).unwrap();
     let display_user_name = env_user_name.split(".").collect::<Vec<&str>>().join(" ");
 
-    let patcher_install_path = USERS_PATH.to_string() + &display_user_name;
+    let patcher_install_path =
+        USERS_PATH.to_string() + "\\" + &display_user_name + "\\" + "Auto spell checker";
 
     match desktop_path {
         Some(path) => {
@@ -30,7 +28,10 @@ async fn main() {
         None => {}
     }
 
-    match get_executor_and_patcher(&executor_install_path, &patcher_install_path).await {
+    match downloader
+        .download_executor_and_patcher(&executor_install_path, &patcher_install_path)
+        .await
+    {
         // Installation completed
         Ok(executor_path) => {
             // Execute
@@ -40,7 +41,7 @@ async fn main() {
         }
 
         Err(err) => {
-            println!("Error: {}", err);
+            println!("Error: {:?}", err);
         }
     }
 }
