@@ -8,11 +8,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1488331-bfaf-495d-b922-687841dab46f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Windows.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/.rustc_info.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/CACHEDIR.TAG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.cargo-lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-0a732000ffd0477e/dep-lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-0a732000ffd0477e/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-0a732000ffd0477e/lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-0a732000ffd0477e/lib-Auto-spell-checker-utils.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-0a732000ffd0477e/output-lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-11d21569ce3e1aa8/dep-test-lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-11d21569ce3e1aa8/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-11d21569ce3e1aa8/output-test-lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-11d21569ce3e1aa8/test-lib-Auto-spell-checker-utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/.fingerprint/Auto-spell-checker-utils-11d21569ce3e1aa8/test-lib-Auto-spell-checker-utils.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/deps/Auto_spell_checker_utils-0a732000ffd0477e.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/deps/Auto_spell_checker_utils-11d21569ce3e1aa8.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/deps/libAuto_spell_checker_utils-0a732000ffd0477e.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/deps/libAuto_spell_checker_utils-11d21569ce3e1aa8.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-1wd1qrml6o7m2/s-gsympw6uof-d2e0mn-cfk6ld42da3ezusv34kop891i/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-1wd1qrml6o7m2/s-gsympw6uof-d2e0mn-cfk6ld42da3ezusv34kop891i/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-1wd1qrml6o7m2/s-gsympw6uof-d2e0mn-cfk6ld42da3ezusv34kop891i/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-1wd1qrml6o7m2/s-gsympw6uof-d2e0mn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-2xqhx3u7c9kwz/s-gsympw6ur0-qfb0qa-1lzs20zeab0mxp0s8gmez6hqx/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-2xqhx3u7c9kwz/s-gsympw6ur0-qfb0qa-1lzs20zeab0mxp0s8gmez6hqx/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-2xqhx3u7c9kwz/s-gsympw6ur0-qfb0qa-1lzs20zeab0mxp0s8gmez6hqx/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auto_spell_checker_utils/target/debug/incremental/Auto_spell_checker_utils-2xqhx3u7c9kwz/s-gsympw6ur0-qfb0qa.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-installer/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-installer/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-installer/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-installer/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-installer/src/aws.rs" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-installer/src/aws.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-installer/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-installer/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-patcher/src/aws.rs" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-patcher/src/aws.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker-patcher/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker-patcher/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto-spell-checker/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/Auto-spell-checker/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +58,9 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="i2bz35pl" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2bR0UwyL9hYxew10hWHvht1g7yt" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -36,23 +69,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/URam Lee/Documents/GitHub/Auto spell checker/Windows",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "settings.editor.selected.configurable": "language.rust.cargo.check",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/URam Lee/Documents/GitHub/Auto spell checker/Windows&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;language.rust.cargo.check&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RsExternalLinterProjectSettings">
     <option name="runOnTheFly" value="true" />
   </component>
@@ -104,6 +137,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706162602498</updated>
       <workItem from="1706162603676" duration="505000" />
+      <workItem from="1706673294659" duration="860000" />
     </task>
     <servers />
   </component>
