@@ -20,6 +20,7 @@ const APP_NAME: &str = "자동 맞춤법 검사기";
 const BASE_URL: &str = "https://search.naver.com/search.naver?ie=UTF-8&sm=whl_hty&query=%EB%A7%9E%EC%B6%A4%EB%B2%95%EA%B2%80%EC%82%AC%EA%B8%B0";
 const COLOR_BLINDNESS: &str = "color_blindness";
 const COLOR_BLINDNESS_VAL: &str = "0";
+const CURRENT_VERSION: &str = "0.1.0";
 
 /// Checks if the current process already exists and terminates it if there is more than one instance.
 pub fn does_exist() {

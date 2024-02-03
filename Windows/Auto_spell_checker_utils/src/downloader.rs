@@ -1,11 +1,13 @@
 use std::fs::{create_dir_all, remove_file, File};
 use std::io::{copy, Cursor};
 
-const EXECUTOR_EXE: &str = "Auto spell checker.exe";
+pub const EXECUTOR_EXE: &str = "Auto spell checker.exe";
 const PATCHER_EXE: &str = "Auto spell checker patcher.exe";
 const BASE_URL: &str = "https://autospellchecker.s3.ap-northeast-2.amazonaws.com/";
 const EXECUTOR_URL: &str = "download_executor";
 const PATCHER_URL: &str = "download_patcher";
+const LASTEST_VERSION: &str = "lastest_version";
+
 pub struct Downloader {}
 
 impl Downloader {
@@ -63,4 +65,13 @@ impl Downloader {
 
         Ok(path)
     }
+    pub async fn check_version(current_version: &str) -> Result<bool, reqwest::Error> {
+        let response = reqwest::get(BASE_URL.to_string() + LASTEST_VERSION)
+            .await?
+            .text()
+            .await?;
+    
+        return Ok(response == current_version);
+    }
+    
 }
