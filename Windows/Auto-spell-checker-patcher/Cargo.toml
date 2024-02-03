@@ -9,3 +9,4 @@ edition = "2021"
 reqwest = "0.11.0"
 tokio = { version = "1.20.1", features = ["full"] }
 ascu = { version = "0.1.0", path = "../Auto_spell_checker_utils" }
+sysinfo = "0.30.5"
