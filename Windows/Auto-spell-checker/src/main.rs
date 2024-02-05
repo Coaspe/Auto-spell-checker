@@ -1,6 +1,8 @@
-// #![windows_subsystem = "windows"]
+#![windows_subsystem = "windows"]
 mod tray;
 mod util;
+use std::process::Child;
+
 use clipboard_win::{formats::Unicode, get_clipboard_string, set_clipboard};
 use futures::executor::block_on;
 use inputbot::KeybdKey::{LAltKey, LControlKey};

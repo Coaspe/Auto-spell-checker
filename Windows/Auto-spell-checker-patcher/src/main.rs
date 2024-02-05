@@ -13,16 +13,11 @@ async fn main() {
 
     let path: &str = &(args[1]);
     let pid = args[2].parse::<usize>().unwrap();
-    println!("path: {}", path);
-    println!("pid: {}", pid);
     // Kill EXECUTOR_EXE if it's running
     let system = System::new_all();
-    // system.refresh_processes();
 
     if let Some(process) = system.process(Pid::from(pid)) {
-        println!("Killing process: {:?}", process.name());
-        let tt = process.kill();
-        println!("Killed: {:?}", tt);
+        process.kill();
     }
     let downloader = Downloader::new();
     let result = downloader.download_executor(path).await;

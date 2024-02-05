@@ -1,5 +1,6 @@
-use std::fs::{create_dir_all, remove_file, File};
+use std::fs::{create_dir_all, File};
 use std::io::{copy, Cursor};
+use std::path::Path;
 
 pub const EXECUTOR_EXE: &str = "auto spell checker.exe";
 pub const PATCHER_EXE: &str = "auto spell checker patcher.exe";
@@ -76,8 +77,7 @@ impl Downloader {
         object_key: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
         let _ = create_dir_all(install_path)?;
-        let path = install_path.to_string() + "\\" + exe;
-        let _ = remove_file(&path)?;
+        let path = Path::new(install_path).join(exe);
 
         let mut params: std::collections::HashMap<&str, &str> = std::collections::HashMap::new();
         params.insert(OBJECT_KEY, object_key);
@@ -92,7 +92,7 @@ impl Downloader {
         let mut content = Cursor::new(response.bytes().await?);
         let _ = copy(&mut content, &mut file);
 
-        Ok(path)
+        Ok(path.into_os_string().into_string().unwrap())
     }
     pub async fn check_version(&self, current_version: &str) -> Result<bool, reqwest::Error> {
         let lastest_version = reqwest::get(BASE_URL.to_string() + LASTEST_VERSION)

@@ -1,5 +1,6 @@
 use crate::util;
-use std::process::Command;
+use std::process::Child;
+use std::{io, process::Command};
 use std::sync::mpsc::sync_channel;
 use tray_item::{IconSource, TrayItem};
 use util::CURRENT_VERSION;
@@ -33,19 +34,35 @@ enum Message {
 }
 
 /// Creates guidance by executing a command with the specified program and arguments.
-fn create_guidance() {
+fn create_guidance() -> Result<Option<Child>, io::Error> {
     let mut cmd = Command::new(COMMAND_PROGRAM);
     cmd.args(&[
         "/C",
         &("echo ".to_string() + CURRENT_VERSION + " ver " + GUIDANCE),
     ]);
-    let _ = cmd.spawn().unwrap();
+
+    Ok(Some(cmd.spawn()?))
+}
+
+fn create_console(console: &mut Option<Child>) {
+    // 현재 콘솔이 None이 아니라면 종료
+    if let Some(mut current_child) = console.take() {
+        // 현재 콘솔 프로세스를 종료
+        let _ = current_child.kill();
+    }
+
+    // 새로운 가이던스 생성 시도
+    if let Ok(new_child) = create_guidance() {
+        // 새로운 가이던스로 콘솔 업데이트
+        *console = new_child;
+    }
 }
 
 /// Initializes the system tray with menu items and message handling.
 pub fn init_tray() {
     // Create a new tray item with the specified title and icon source
     let mut tray = TrayItem::new(TRAY_TITLE, IconSource::Resource(APP_ICON)).unwrap();
+    let mut console: Option<Child> = None;
 
     // Add a label to the tray item
     tray.add_label(TRAY_TITLE).unwrap();
@@ -54,7 +71,7 @@ pub fn init_tray() {
     let (tx, rx) = sync_channel(1);
 
     // Create guidance for the application
-    create_guidance();
+    create_console(&mut console);
 
     // Clone the sender for showing the window and add a menu item with a closure
     let show_window_tx = tx.clone();
@@ -90,7 +107,7 @@ pub fn init_tray() {
 
             // If the ShowWindow message is received, create guidance
             Ok(Message::ShowWindow) => {
-                create_guidance();
+                create_console(&mut console);
             }
 
             // If the Report message is received, open the report URL
