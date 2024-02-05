@@ -1,30 +1,29 @@
 use ascu::Downloader;
 use std::env::args;
 use std::process::Command;
-use sysinfo::{System, SystemExt};
+use sysinfo::{Pid, System};
 
 #[tokio::main]
 async fn main() {
     let args: Vec<String> = args().collect();
 
-    if args.len() < 3 {
+    if args.len() != 3 {
         return;
     };
 
     let path: &str = &(args[1]);
-    let pid = args[2].parse::<u32>().unwrap();
-
+    let pid = args[2].parse::<usize>().unwrap();
+    println!("path: {}", path);
+    println!("pid: {}", pid);
     // Kill EXECUTOR_EXE if it's running
-    let mut system = System::new_all();
-    system.refresh_all();
+    let system = System::new_all();
+    // system.refresh_processes();
 
-    for (p, process) in system.get_processes() {
-        if p == pid {
-            let _ = process.kill(sysinfo::Signal::Kill);
-            break;
-        }
+    if let Some(process) = system.process(Pid::from(pid)) {
+        println!("Killing process: {:?}", process.name());
+        let tt = process.kill();
+        println!("Killed: {:?}", tt);
     }
-
     let downloader = Downloader::new();
     let result = downloader.download_executor(path).await;
 
@@ -37,6 +36,7 @@ async fn main() {
 
         Err(error) => {
             println!("{:?}", error);
+            loop {}
         }
     }
 }

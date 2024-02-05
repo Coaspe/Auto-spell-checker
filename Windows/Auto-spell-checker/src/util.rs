@@ -1,8 +1,12 @@
+use ascu::{Downloader, PATCHER_EXE};
 use notify_rust::Notification;
 use regex::Regex;
 use reqwest::Error;
+use std::{env, path::Path, process::Command};
 use sysinfo::System;
 
+const CHECK_VERSION_ERR_MSG: &str = "버전을 확인하는데 실패했습니다.";
+const CHECK_VERSION_MSG: &str = "최신 버젼이 존재합니다 업데이트를 진행합니다.";
 const APP_EXE_NAME: &str = "auto_spell_checker.exe";
 const Q: &str = "q";
 const URL: &str = "https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy";
@@ -20,13 +24,20 @@ const APP_NAME: &str = "자동 맞춤법 검사기";
 const BASE_URL: &str = "https://search.naver.com/search.naver?ie=UTF-8&sm=whl_hty&query=%EB%A7%9E%EC%B6%A4%EB%B2%95%EA%B2%80%EC%82%AC%EA%B8%B0";
 const COLOR_BLINDNESS: &str = "color_blindness";
 const COLOR_BLINDNESS_VAL: &str = "0";
-const CURRENT_VERSION: &str = "0.1.0";
-
+pub const CURRENT_VERSION: &str = "0.1.0";
+const SUMMARY_S_CHECK_VERSION: &str = "최신 버젼 확인";
+const SUMMARY_F_CHECK_VERSION: &str = "버전을 확인 실패";
+const USERS_PATH: &str = "C:\\Users";
+const USERNAME: &str = "USERNAME";
+const PARENT_FOLRDER: &str = "Auto spell checker";
 /// Checks if the current process already exists and terminates it if there is more than one instance.
 pub fn does_exist() {
     let s = System::new_all();
-    if s.processes_by_exact_name(APP_EXE_NAME).count() > 1 {
-        std::process::exit(0);
+    let id = std::process::id();
+    for p in s.processes_by_exact_name(APP_EXE_NAME) {
+        if p.pid().as_u32() != id {
+            p.kill();
+        }
     }
 }
 
@@ -162,5 +173,56 @@ pub async fn get_formatted_string(
     } else {
         let error = response.error_for_status().unwrap_err();
         Err(From::from(error))
+    }
+}
+
+pub async fn manage_version() -> Result<(), Box<dyn std::error::Error>> {
+    let downloader = Downloader::new();
+
+    match downloader.check_version(CURRENT_VERSION).await {
+        Ok(is_latest) => {
+            if !is_latest {
+                notify(CHECK_VERSION_MSG, SUMMARY_S_CHECK_VERSION);
+
+                let env_user_name = env::var(USERNAME).unwrap();
+                let display_user_name = env_user_name.split(".").collect::<Vec<&str>>().join(" ");
+                let patcher_path_without_file_name =
+                    String::from(USERS_PATH) + "\\" + &display_user_name + "\\" + PARENT_FOLRDER;
+
+                let patcher_dir_path = Path::new(&patcher_path_without_file_name);
+                if !patcher_dir_path.exists() {
+                    let _ = std::fs::create_dir_all(patcher_dir_path)?;
+                }
+
+                let patcher_path = patcher_dir_path.join(PATCHER_EXE);
+                if !patcher_path.exists() {
+                    let _ = downloader
+                        .download_patcher(patcher_dir_path.to_str().unwrap())
+                        .await
+                        .unwrap();
+                }
+
+                let parent_folder = env::current_exe()
+                    .unwrap()
+                    .parent()
+                    .unwrap()
+                    .display()
+                    .to_string();
+
+                let _ = Command::new(patcher_path.to_str().unwrap())
+                    .arg(parent_folder)
+                    .arg(std::process::id().to_string())
+                    .spawn()
+                    .expect("Failed to execute command");
+
+                std::process::exit(0);
+            }
+            Ok(())
+        }
+
+        Err(err) => {
+            notify(CHECK_VERSION_ERR_MSG, SUMMARY_F_CHECK_VERSION);
+            Err(From::from(err))
+        }
     }
 }

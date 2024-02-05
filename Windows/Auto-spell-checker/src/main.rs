@@ -1,69 +1,23 @@
-#![windows_subsystem = "windows"]
+// #![windows_subsystem = "windows"]
 mod tray;
 mod util;
-use ascu::Downloader;
 use clipboard_win::{formats::Unicode, get_clipboard_string, set_clipboard};
 use futures::executor::block_on;
 use inputbot::KeybdKey::{LAltKey, LControlKey};
-use std::env;
-use util::{check_version, does_exist, get_formatted_string, get_passport_key, notify};
+use util::{does_exist, get_formatted_string, get_passport_key, manage_version, notify};
 
-const CHECK_VERSION_ERR_MSG: &str = "버전을 확인하는데 실패했습니다.";
-const CHECK_VERSION_MSG: &str = "최신 버젼이 존재합니다 업데이트를 진행합니다.";
 const UNKNOWN_MSG: &str = "뭔가 잘못됐습니다. 이우람에게 연락하세요.";
 const WRONG_CLIPBOARD_TEXT_MSG: &str = "클립보드에 문자가 아닌 요소가 복사되어 있습니다.";
 const PASSPORT_KEY_MSG: &str = "패스포트 키를 가져오는데 실패했습니다. 이우람에게 연락하세요.";
 const SUMMARY_F_START: &str = "프로그램 시작을 실패했습니다.";
 const SUMMARY_S: &str = "결과가 클립보드에 복사되었습니다.";
-const SUMMARY_S_CHECK_VERSION: &str = "최신 버젼 확인";
 const SUMMARY_F: &str = "맞춤법 검사에 실패했습니다.";
-const SUMMARY_F_CHECK_VERSION: &str = "버전을 확인 실패";
 const SUMMARY_F_MAX: &str = "300자 이상의 텍스트는 검사할 수 없습니다.";
-const USERS_PATH: &str = "C:\\Users";
-const USERNAME: &str = "USERNAME";
 
 #[tokio::main]
 async fn main() {
     does_exist();
-    let downloader = Downloader::new();
-
-    match downloader.check_version().await {
-        Ok(is_latest) => {
-            if !is_latest {
-                notify(CHECK_VERSION_MSG, SUMMARY_S_CHECK_VERSION);
-
-                let env_user_name = env::var(USERNAME).unwrap();
-                let display_user_name = env_user_name.split(".").collect::<Vec<&str>>().join(" ");
-                let patcher_dir_path = Path::new(
-                    USERS_PATH.to_string()
-                        + "\\"
-                        + &display_user_name
-                        + "\\"
-                        + "Auto spell checker",
-                );
-                if !patcher_dir_path.exists() {
-                    let _ = std::fs::create_dir_all(&patcher_path_without_file_name);
-                }
-
-                let patcher_path = Path::new(&patcher_path_without_file_name)
-                    .join("Auto spell checker patcher.exe");
-
-                if !patcher_path.exists() {
-                    let _ = downloader
-                        .download_patcher(patcher_dir_path.to_str().unwrap())
-                        .await?;
-                }
-                
-                Command::new(&patcher_path)
-                .arg(env::current_exe().unwrap())
-                .spawn()
-            }
-        }
-
-        Err(_) => {
-            notify(CHECK_VERSION_ERR_MSG, SUMMARY_F_CHECK_VERSION);
-        }
-    }
+    let _ = manage_version().await;
 
     let client = reqwest::Client::new();
     let result = get_passport_key(&client).await;

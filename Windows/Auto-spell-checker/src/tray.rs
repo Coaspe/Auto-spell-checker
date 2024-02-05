@@ -1,9 +1,11 @@
+use crate::util;
 use std::process::Command;
 use std::sync::mpsc::sync_channel;
 use tray_item::{IconSource, TrayItem};
+use util::CURRENT_VERSION;
 
 const GUIDANCE: &str =
-    "echo --------------------------------------------------------------------- \
+    "&& echo --------------------------------------------------------------------- \
 && echo 1. 원하는 텍스트를 클립 보드에 복사 (Ctrl + C) \
 && echo 2. Left Ctrl + Left Alt를 순서대로 누르면 자동 맞춤법 검사가 진행됩니다. \
 && echo 3. 자동 맞춤법 검사가 완료되면 클립보드에 자동으로 복사됩니다. \
@@ -33,7 +35,10 @@ enum Message {
 /// Creates guidance by executing a command with the specified program and arguments.
 fn create_guidance() {
     let mut cmd = Command::new(COMMAND_PROGRAM);
-    cmd.args(&["/C", GUIDANCE]);
+    cmd.args(&[
+        "/C",
+        &("echo ".to_string() + CURRENT_VERSION + " ver " + GUIDANCE),
+    ]);
     let _ = cmd.spawn().unwrap();
 }
 
