@@ -1,9 +1,9 @@
 use crate::util;
 use std::process::Child;
-use std::{io, process::Command};
 use std::sync::mpsc::sync_channel;
+use std::{io, process::Command};
 use tray_item::{IconSource, TrayItem};
-use util::CURRENT_VERSION;
+use util::{close_consoles, CURRENT_VERSION};
 
 const GUIDANCE: &str =
     "&& echo --------------------------------------------------------------------- \
@@ -102,6 +102,7 @@ pub fn init_tray() {
         match rx.recv() {
             // If the Quit message is received, exit the application
             Ok(Message::Quit) => {
+                let _ = close_consoles(std::process::id());
                 std::process::exit(0);
             }
 

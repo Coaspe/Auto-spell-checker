@@ -19,5 +19,13 @@ regex = "1.10.3"
 sysinfo = "0.30.5"
 ascu = { version = "0.1.0", path = "../Auto_spell_checker_utils" }
 
+[dependencies.windows]
+version = "0.52"
+features = [
+    "Win32_Foundation",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_Threading",
+]
+
 [build-dependencies]
 embed-resource = "2.3"

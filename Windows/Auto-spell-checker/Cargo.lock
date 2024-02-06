@@ -227,6 +227,7 @@ dependencies = [
  "sysinfo",
  "tokio",
  "tray-item",
+ "windows 0.52.0",
 ]
 
 [[package]]

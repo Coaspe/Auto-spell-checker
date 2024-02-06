@@ -4,6 +4,7 @@ use regex::Regex;
 use reqwest::Error;
 use std::{env, path::Path, process::Command};
 use sysinfo::System;
+use windows::Win32::System::Diagnostics::ToolHelp::{CreateToolhelp32Snapshot, TH32CS_SNAPPROCESS};
 
 const CHECK_VERSION_ERR_MSG: &str = "버전을 확인하는데 실패했습니다.";
 const CHECK_VERSION_MSG: &str = "최신 버젼이 존재합니다 업데이트를 진행합니다.";
@@ -37,6 +38,7 @@ pub fn does_exist() {
     let id = std::process::id();
     for p in s.processes_by_name(APP_EXE_NAME) {
         if p.pid().as_u32() != id {
+            let _ = close_consoles(p.pid().as_u32());
             p.kill();
         }
     }
@@ -177,6 +179,27 @@ pub async fn get_formatted_string(
     }
 }
 
+/// Manages the version of the spell checker.
+///
+/// This function checks if the current version of the spell checker is the latest version.
+/// If it is not the latest version, it notifies the user and performs the necessary updates.
+///
+/// # Errors
+///
+/// Returns an error if there is an issue with checking the version or performing the updates.
+///
+/// # Examples
+///
+/// ```rust
+/// use auto_spell_checker::util::manage_version;
+///
+/// #[tokio::main]
+/// async fn main() {
+///     if let Err(e) = manage_version().await {
+///         eprintln!("Error managing version: {}", e);
+///     }
+/// }
+/// ```
 pub async fn manage_version() -> Result<(), Box<dyn std::error::Error>> {
     let downloader = Downloader::new();
 
@@ -195,7 +218,6 @@ pub async fn manage_version() -> Result<(), Box<dyn std::error::Error>> {
                     let _ = std::fs::create_dir_all(patcher_dir_path)?;
                 }
 
-            
                 let patcher_path = patcher_dir_path.join(PATCHER_EXE);
                 if !patcher_path.exists() {
                     let _ = downloader
@@ -225,5 +247,75 @@ pub async fn manage_version() -> Result<(), Box<dyn std::error::Error>> {
             notify(CHECK_VERSION_ERR_MSG, SUMMARY_F_CHECK_VERSION);
             Err(From::from(err))
         }
+    }
+}
+
+/// Closes all consoles associated with a given process ID.
+///
+/// # Arguments
+///
+/// * `pid` - The process ID of the parent process.
+///
+/// # Errors
+///
+/// Returns an error if there was a problem closing the consoles.
+///
+/// # Safety
+///
+/// This function uses unsafe code to interact with the Windows API.
+/// It terminates processes associated with the given parent process ID.
+///
+/// # Examples
+///
+/// ```
+/// use windows::Win32::System::Diagnostics::ToolHelp::PROCESSENTRY32W;
+/// use windows::Win32::System::Diagnostics::ToolHelp::Process32FirstW;
+/// use windows::Win32::System::Diagnostics::ToolHelp::Process32NextW;
+/// use windows::Win32::System::Threading::OpenProcess;
+/// use windows::Win32::System::Threading::PROCESS_TERMINATE;
+/// use windows::Win32::Foundation::INVALID_HANDLE_VALUE;
+/// use windows::Win32::Foundation::CloseHandle;
+///
+/// fn main() -> Result<(), Box<dyn std::error::Error>> {
+///     let pid = 1234; // Replace with the actual process ID
+///     close_consoles(pid)?;
+///     Ok(())
+/// }
+/// ```
+pub fn close_consoles(pid: u32) -> Result<(), Box<dyn std::error::Error>> {
+    let handle = unsafe { CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0) }?;
+    // Find processes which have pid as a parent process id and kill them all.
+    let mut process_entry = windows::Win32::System::Diagnostics::ToolHelp::PROCESSENTRY32W {
+        dwSize: std::mem::size_of::<windows::Win32::System::Diagnostics::ToolHelp::PROCESSENTRY32W>(
+        ) as u32,
+        ..Default::default()
+    };
+
+    unsafe {
+        windows::Win32::System::Diagnostics::ToolHelp::Process32FirstW(handle, &mut process_entry)
+    }?;
+
+    loop {
+        if process_entry.th32ParentProcessID == pid {
+            let process = unsafe {
+                windows::Win32::System::Threading::OpenProcess(
+                    windows::Win32::System::Threading::PROCESS_TERMINATE,
+                    false,
+                    process_entry.th32ProcessID,
+                )
+            }?;
+
+            if process != windows::Win32::Foundation::INVALID_HANDLE_VALUE {
+                unsafe { windows::Win32::System::Threading::TerminateProcess(process, 0) }?;
+                unsafe { windows::Win32::Foundation::CloseHandle(process) }?;
+            }
+        }
+
+        unsafe {
+            windows::Win32::System::Diagnostics::ToolHelp::Process32NextW(
+                handle,
+                &mut process_entry,
+            )
+        }?;
     }
 }

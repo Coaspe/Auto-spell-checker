@@ -4,7 +4,7 @@ use std::path::Path;
 
 pub const EXECUTOR_EXE: &str = "auto spell checker.exe";
 pub const PATCHER_EXE: &str = "auto spell checker patcher.exe";
-const BASE_URL: &str = "http://ec2-52-79-251-159.ap-northeast-2.compute.amazonaws.com";
+const PUBLIC_IPV4_DNS: &str = "http://ec2-15-164-94-231.ap-northeast-2.compute.amazonaws.com";
 const DOWNLOAD_EXE_URL: &str = "/download_exe";
 const LASTEST_VERSION: &str = "/lastest_version";
 const OBJECT_KEY: &str = "object_key";
@@ -83,7 +83,7 @@ impl Downloader {
         params.insert(OBJECT_KEY, object_key);
 
         let response = reqwest::Client::new()
-            .get(BASE_URL.to_string() + url)
+            .get(PUBLIC_IPV4_DNS.to_string() + url)
             .query(&params)
             .send()
             .await?;
@@ -95,7 +95,7 @@ impl Downloader {
         Ok(path.into_os_string().into_string().unwrap())
     }
     pub async fn check_version(&self, current_version: &str) -> Result<bool, reqwest::Error> {
-        let lastest_version = reqwest::get(BASE_URL.to_string() + LASTEST_VERSION)
+        let lastest_version = reqwest::get(PUBLIC_IPV4_DNS.to_string() + LASTEST_VERSION)
             .await?
             .text()
             .await?;
