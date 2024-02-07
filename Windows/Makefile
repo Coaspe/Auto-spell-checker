@@ -5,5 +5,5 @@ all: ${PROJECTS}
 
 .PHONY: ${PROJECTS}
 ${PROJECTS}:
-	@echo "Building Auto-spell-checker in release mode..."
-	@cd Auto-spell-checker && cargo build --release && cd ..
+	@echo "Building $@ in release mode..."
+	@cd $@ && cargo build --release && cd ..
