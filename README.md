@@ -1,4 +1,7 @@
-# Auto spell checker
+<p align="center">
+<img width="100%" alt="스크린샷 2024-08-31 오후 5 06 08" src="https://github.com/user-attachments/assets/4149a09d-8802-4736-a8ac-e60ae8cfce80">
+</p>
+
 
 > 데스크탑에서 백그라운드로 작동하며 네이버 맞춤법 검사기를 사용하는 한글 맞춤법 검사기 입니다.
 
